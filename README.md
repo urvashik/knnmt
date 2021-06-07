@@ -6,7 +6,7 @@ This code pertains to the ICLR 2021 paper: [Nearest Neighbor Machine Translation
 
 ```
 @inproceedings{khandelwal2021nearest,
-  title={{Nearest Neighbor Machine Translation}},
+  title={Nearest Neighbor Machine Translation},
   author={Khandelwal, Urvashi and Fan, Angela and Jurafsky, Dan and Zettlemoyer, Luke and Lewis, Mike},
   booktitle={International Conference on Learning Representations (ICLR)},
   year={2021}
