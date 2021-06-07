@@ -25,7 +25,7 @@ Download the [WMT19 German-English](https://github.com/pytorch/fairseq/tree/8b9e
 
 Preprocess the data using the `prepare-domadapt.sh` script in the `examples/translation` directory, but be sure to set the paths for the moses scripts, fastBPE, the model dictionaries and the bpecodes first:
 ```
-bash prepare-domadap.sh medical
+bash prepare-domadapt.sh medical
 ```
 If you have to rerun the script, make sure you delete the `tok` and `bpe` files first because the script will append to the existing files.
 
