@@ -36,10 +36,11 @@ python fairseq_cli/preprocess.py --source-lang de --target-lang en --trainpref e
 
 Creating the datastore is governed by `master_script.py` which contains a lot of logic for parallelizing things which is not useful/reusable. If you do not want to use the script, you can figure out the steps from it and execute them separately -- training the index and adding all the key-value pairs to it.  
 
-The master script uses slurm and a tool called submitit to execute jobs and requires a whole host of slurm related parameters to be provided. If your setup uses slurm, please determine the appropriate settings for those parameters. If it does not use slurm, you would need to modify it to make it compatible with your setup.
+The master script uses slurm and a tool called submitit to execute jobs and requires a whole host of slurm related parameters to be provided. If your setup uses slurm, please determine the appropriate settings for those parameters. If it does not use slurm, you would need to modify the script to make it compatible with your setup.
 
 __Note__: In this work, we create the datastore without saving the full-precision keys or the values to a separate memory map, which is different from how we did this in [kNN-LM](https://github.com/urvashik/knnlm). The key-value pairs are added directly to the faiss index.
 
+Create the `dstores/medical` directory before executing the following commands.  
 
 ```
 python master_script.py --log-folder logs/medical/build_index --slurm-name med --bytes-per-token 2 --model checkpoints/wmt19.de-en/model.pt --bpe fastbpe --bpecodes checkpoints/wmt19.de-en/bpecodes --save-data data-bin/medical.de-en/ --binfile train.de-en.en.bin --num-shards 1 --dstore-mmap dstores/medical/index_only --num-for-training 1000000 --code-size 64 --ncentroids 4096 --train-index dstores/medical/index_only.4096.index.trained --save-job --merge-dstore-job --train-index-job  
